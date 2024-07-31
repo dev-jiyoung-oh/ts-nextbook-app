@@ -6,6 +6,11 @@
 -->
 ![샘플 애플리케이션](images/coverpage.png)
 
+## 내 레포지토리의 특이점
+- 스토리북 버전 6.5.9 -> 8.2.5 업그레이드에 따른 소스 파일 수정
+  - .storybook\preview.tsx
+  - src\components 하위 폴더(atoms, molecules, organisms) 파일들
+
 <!--
 ## 1판에서의 업데이트
 
@@ -24,7 +29,9 @@
 - Node.js: 20.12.0
 - Next.js: 14.2.4
 - React: 18
-  
+
+****
+
 ## 설치
 
 ```bash
