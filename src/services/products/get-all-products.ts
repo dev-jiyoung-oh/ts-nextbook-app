@@ -1,5 +1,5 @@
-import type { ApiContext, Category, Condition, Product } from 'types'
-import { fetcher } from 'utils'
+import type { ApiContext, Category, Condition, Product } from '@/types/data'
+import { fetcher } from '@/utils'
 
 export type GetAllProductsParams = {
   /**
@@ -55,8 +55,7 @@ const getAllProducts = async (
   const params = new URLSearchParams()
 
   category && params.append('category', category)
-  conditions &&
-    conditions.forEach((condition) => params.append('condition', condition))
+  conditions && conditions.forEach((condition) => params.append('condition', condition))
   userId && params.append('owner.id', `${userId}`)
   page && params.append('_page', `${page}`)
   limit && params.append('_limit', `${limit}`)

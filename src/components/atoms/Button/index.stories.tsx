@@ -1,4 +1,5 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+//import { Meta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import Button from './index'
 
 export default {
@@ -52,18 +53,48 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Button>
+  // defaultValue 대신~
+  args: {
+    variant: 'primary',
+    children: 'Button',
+    disabled: false,
+  }
+} as Meta<typeof Button>
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
+type Template = StoryObj<typeof Button>;
+
+const Default: Template = {
+  render: (args) => <Button {...args} />,
+};
 
 // Primary 버튼
+/* 책 버전
 export const Primary = Template.bind({})
 Primary.args = { variant: 'primary', children: 'Primary Button' }
+*/
+export const Primary: Template = {
+  ...Default,
+  args: { variant: 'primary', children: 'Primary Button' }
+}
 
 // Secondary 버튼
+/* 책 버전
 export const Secondary = Template.bind({})
 Secondary.args = { variant: 'secondary', children: 'Secondary Button' }
+*/
+export const Secondary: Template = {
+  ...Default,
+  args: { variant: 'secondary', children: 'Secondary Button' }
+}
 
 // Disabled 버튼
+/* 책 버전
 export const Disabled = Template.bind({})
 Disabled.args = { disabled: true, children: 'Disabled Button' }
+*/
+export const Disabled: Template = {
+  ...Default,
+  args: { disabled: true, children: 'Disabled Button' }
+}
+
+// https://storybook.js.org/docs/api/csf 참고해서 수정

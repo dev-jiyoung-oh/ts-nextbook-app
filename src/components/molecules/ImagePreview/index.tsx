@@ -1,7 +1,9 @@
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { CloseIcon } from 'components/atoms/IconButton'
-import Box from 'components/layout/Box'
-import Flex from 'components/layout/Flex'
+import { CloseIcon } from '@/components/atoms/IconButton'
+import Box from '@/components/layout/Box'
+import Flex from '@/components/layout/Flex'
+import Dropzone from '@/components/molecules/Dropzone'
 
 const ImagePreviewContainer = styled(Box)`
   position: relative;
@@ -75,4 +77,64 @@ const ImagePreview = ({
   )
 }
 
+// 커스텀
+const Container = styled.div`
+  width: 288px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  
+  `
+interface Image {
+  file?: File
+  src?: string
+}
 export default ImagePreview
+
+export const ImagePreviewCustom = (args: ImagePreviewProps) => {
+  const [files, setFiles] = useState<File[]>([])
+  const [images, setImages] = useState<Image[]>([])
+
+  useEffect(() => {
+    const newImages = [...images]
+
+    for (const f of files) {
+      const index = newImages.findIndex((img: Image) => img.file === f)
+
+      if (index === -1) {
+        newImages.push({
+          file: f,
+          src: URL.createObjectURL(f),
+        })
+      }
+    }
+    setImages(newImages)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [files]);
+
+  const handleRemove = (src: string) => {
+    const image = images.find((img: Image) => img.src === src)
+
+    if (image !== undefined) {
+      setImages((images) => images.filter((img) => img.src !== image.src))
+      setFiles((files) => files.filter((file: File) => file !== image.file))
+    }
+
+    args && args.onRemove && args.onRemove(src)
+  }
+
+  return (
+    <Container>
+      <Dropzone value={files} onDrop={(fileList) => setFiles(fileList)} />
+      {images.map((image, i) => (
+        <ImagePreview
+          key={i}
+          src={image.src}
+          width="100px"
+          {...args}
+          onRemove={handleRemove}
+        />
+      ))}
+    </Container>
+  )
+}

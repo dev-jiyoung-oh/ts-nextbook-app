@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import type { ApiContext, Product } from 'types'
+import type { ApiContext, Product } from '@/types/data'
 
 export type UseProductProps = {
   /**
@@ -33,10 +33,7 @@ export type UseProduct = {
  * @param params 상품 ID와 초기 상태
  * @returns 상품과 API 호출 상태
  */
-const useProduct = (
-  context: ApiContext,
-  { id, initial }: UseProductProps,
-): UseProduct => {
+const useProduct = (context: ApiContext, { id, initial }: UseProductProps): UseProduct => {
   const { data, error } = useSWR<Product>(
     `${context.apiRootUrl.replace(/\/$/g, '')}/products/${id}`,
   )

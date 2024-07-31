@@ -1,10 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import BadgeIconButton from './index'
 import {
   PersonIcon,
   SearchIcon,
   ShoppingCartIcon,
-} from 'components/atoms/IconButton'
+} from '@/components/atoms/IconButton'
 
 export default {
   title: 'Molecules/BadgeIconButton',
@@ -31,29 +31,39 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof BadgeIconButton>
+} as Meta<typeof BadgeIconButton>
 
-const Template: ComponentStory<typeof BadgeIconButton> = (args) => (
-  <BadgeIconButton {...args} />
-)
+type Template = StoryObj<typeof BadgeIconButton> 
 
-export const SearchBadgeIcon = Template.bind({})
-SearchBadgeIcon.args = {
-  icon: <SearchIcon size={24} />,
-  badgeContent: 1,
-  badgeBackgroundColor: '#ed9f28',
+const Default: Template = {
+  render: (args) => (
+    <BadgeIconButton {...args} />
+  )
 }
 
-export const PersonBadgeIcon = Template.bind({})
-PersonBadgeIcon.args = {
-  icon: <PersonIcon size={24} />,
-  badgeContent: 1,
-  badgeBackgroundColor: '#d4001a',
+export const SearchBadgeIcon: Template = {
+  ...Default,
+  args: {
+    icon: <SearchIcon size={24} />,
+    badgeContent: 1,
+    badgeBackgroundColor: '#ed9f28',
+  }
 }
 
-export const ShoppingCartBadgeIcon = Template.bind({})
-ShoppingCartBadgeIcon.args = {
-  icon: <ShoppingCartIcon size={24} />,
-  badgeContent: 1,
-  badgeBackgroundColor: '#32bf00',
+export const PersonBadgeIcon: Template = {
+  ...Default,
+  args: {
+    icon: <PersonIcon size={24} />,
+    badgeContent: 1,
+    badgeBackgroundColor: '#d4001a',
+  }
+}
+
+export const ShoppingCartBadgeIcon: Template = {
+  ...Default,
+  args: {
+    icon: <ShoppingCartIcon size={24} />,
+    badgeContent: 1,
+    badgeBackgroundColor: '#32bf00',
+  }
 }

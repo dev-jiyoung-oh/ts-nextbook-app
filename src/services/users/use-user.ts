@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import type { ApiContext, User } from 'types'
+import { ApiContext, User } from "@/types/data";
 
 export type UseUserProps = {
   /**
@@ -32,9 +32,7 @@ export type UseUser = {
  * @param context API 컨텍스트
  * @returns 사용자와 API 호출 상태
  */
-const useUser = (
-  context: ApiContext,
-  { id, initial }: UseUserProps,
+const useUser = (context: ApiContext, { id, initial }: UseUserProps,
 ): UseUser => {
   const { data, error } = useSWR<User>(
     `${context.apiRootUrl.replace(/\/$/g, '')}/users/${id}`,

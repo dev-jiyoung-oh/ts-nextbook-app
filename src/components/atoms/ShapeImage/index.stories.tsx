@@ -1,6 +1,5 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import ShapeImage from './index'
-
 export default {
   title: 'Atoms/ShapeImage',
   argTypes: {
@@ -23,8 +22,8 @@ export default {
     },
     width: {
       control: { type: 'number' },
-      defaultValue: 320,
       description: '가로폭',
+      defaultValue : 320, // 동작 안함
       table: {
         type: { summary: 'number' },
       },
@@ -32,20 +31,45 @@ export default {
     height: {
       control: { type: 'number' },
       description: '세로폭',
-      defaultValue: 320,
+      defaultValue: 320, // 동작 안함
       table: {
         type: { summary: 'number' },
       },
     },
   },
-} as ComponentMeta<typeof ShapeImage>
+  // defaultValue 대신~
+  args: {
+    shape: 'square',
+    width: '320',
+    height: '320',
+  },
+} as Meta<typeof ShapeImage>
 
-const Template: ComponentStory<typeof ShapeImage> = (args) => (
-  <ShapeImage {...args} />
-)
+type Template = StoryObj<typeof ShapeImage>;
 
-export const Circle = Template.bind({})
-Circle.args = { src: '/images/sample/1.jpg', shape: 'circle' }
+const Default: Template = {
+  render: (args) => (
+    <ShapeImage {...args} />
+  )
+}
 
-export const Square = Template.bind({})
-Square.args = { src: '/images/sample/1.jpg', shape: 'square' }
+export const Circle = {
+  ...Default,
+  args: { src: '/images/sample/1.jpg', shape: 'circle'},
+}
+
+export const Square = {
+  ...Default,
+  args: { src: '/images/sample/1.jpg', shape: 'square' },
+}
+
+export const Test = {
+  args:{
+    src:"/images/sample/1.jpg",
+    shape:"square",
+    width:320,
+    height:320
+  },
+
+  ...Default
+};

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
-import { CloudUploadIcon } from 'components/atoms/IconButton'
+import Button from '@/components/atoms/Button'
+import { CloudUploadIcon } from '@/components/atoms/IconButton'
+import Box from '@/components/layout/Box'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isDragEvt = (value: any): value is React.DragEvent => {
@@ -161,7 +163,7 @@ const Dropzone = (props: DropzoneProps) => {
 
     if (files.length == 0) {
       return window.alert(
-        `次のファイルフォーマットは指定できません${acceptedFileTypes.join(
+        `다음 파일 포맷은 지정할 수 없습니다. ${acceptedFileTypes.join(
           ' ,',
         )})`,
       )
@@ -242,3 +244,53 @@ Dropzone.defaultProps = {
 }
 
 export default Dropzone
+
+export const DropzoneCustom = (args: DropzoneProps) => {
+  const [files, setFiles] = useState<File[]>([])
+  const handleDrop = (files: File[]) => {
+    setFiles(files)
+    args && args.onDrop && args.onDrop(files)
+  }
+
+  const fetchData = async () => {
+    const res = await fetch('/images/sample/1.jpg')
+    const blob = await res.blob()
+    const file = new File([blob], '1.png', blob)
+
+    setFiles([...files, file])
+  }
+
+  const clearImages = () => {
+    setFiles([])
+  }
+
+  useEffect(() => {
+    fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return (
+    <>
+      <Box marginBottom={1}>
+        <Dropzone {...args} value={files} onDrop={handleDrop} />
+      </Box>
+      <Box marginBottom={1}>
+        <Button onClick={fetchData}>이미지를 추가</Button>
+      </Box>
+      <Box marginBottom={2}>
+        <Button onClick={clearImages}>모든 이미지를 클리어</Button>
+      </Box>
+      <Box>
+        {files.map((f, i) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={URL.createObjectURL(f)}
+            width="100px"
+            key={i}
+            alt="sample"
+          />
+        ))}
+      </Box>
+    </>
+  )
+}

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import FilterGroup from './index'
 
@@ -12,13 +12,15 @@ export default {
         type: { summary: 'string' },
       },
     },
+    
     items: {
-      control: { type: 'array' },
+      control: { type: 'object' },
       description: '옵션',
       table: {
         type: { summary: 'array' },
       },
     },
+    
     onChange: {
       description: 'onChange 이벤트 핸들러',
       table: {
@@ -26,24 +28,30 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FilterGroup>
+} as Meta<typeof FilterGroup>
 
-const Template: ComponentStory<typeof FilterGroup> = (args) => {
-  const [value, setValue] = useState<string[]>([])
-  const handleChange = (value: string[]) => {
-    setValue(value)
-    args && args.onChange && args.onChange(value)
+type Template = StoryObj<typeof FilterGroup>;
+
+const Default: Template = {
+  render: (args) => {
+    const [value, setValue] = useState<string[]>([])
+    const handleChange = (value: string[]) => {
+      setValue(value)
+      args && args.onChange && args.onChange(value)
+    }
+
+    return <FilterGroup value={value} onChange={handleChange} {...args} />
   }
-
-  return <FilterGroup value={value} onChange={handleChange} {...args} />
 }
 
-export const Standard = Template.bind({})
-Standard.args = {
-  title: 'All categories',
-  items: [
-    { label: 'Clothes', name: 'clothes' },
-    { label: 'Books', name: 'books' },
-    { label: 'Shoes', name: 'shoes' },
-  ],
+export const Standard: Template = {
+  ...Default,
+  args: {
+    title: 'All categories',
+    items: [
+      { label: 'Clothes', name: 'clothes' },
+      { label: 'Books', name: 'books' },
+      { label: 'Shoes', name: 'shoes' },
+    ],
+  }
 }

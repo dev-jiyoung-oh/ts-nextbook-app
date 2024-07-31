@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import Input from './index'
 
 export default {
@@ -28,11 +28,31 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Input>
+  // defaultValue 대신~
+  args: {
+    hasBorder: true,
+    hasError: false,
+  }
+} as Meta<typeof Input>
 
-const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />
+type Template = StoryObj<typeof Input>;
 
+const Default: Template = {
+  render: (args) => <Input {...args} />
+}
+
+export const Normal: Template = {
+  ...Default,
+}
+
+export const Error: Template = {
+  ...Default,
+  args: { hasError: true }
+}
+
+/* 책
 export const Normal = Template.bind({})
 
 export const Error = Template.bind({})
 Error.args = { hasError: true }
+*/

@@ -1,5 +1,5 @@
-import type { ApiContext } from 'types'
-import { fetcher } from 'utils'
+import type { ApiContext } from '@/types/data'
+import { fetcher } from '@/utils'
 
 /**
  * 인증 API(로그아웃)

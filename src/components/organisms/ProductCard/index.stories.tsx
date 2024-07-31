@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import ProductCard from './index'
 
 export default {
@@ -43,35 +43,49 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ProductCard>
+  // defaultValue 대신~
+  args: {
+    variant: 'listing',
+  },
+} as Meta<typeof ProductCard>
 
-const Template: ComponentStory<typeof ProductCard> = (args) => (
-  <ProductCard {...args} />
-)
+type Template = StoryObj<typeof ProductCard>;
+
+const Default: Template = {
+  render: (args) => (
+    <ProductCard {...args} />
+  )
+}
 
 // Listing 카드
-export const Listing = Template.bind({})
-Listing.args = {
-  variant: 'listing',
-  title: '멋진 신발',
-  imageUrl: '/images/sample/1.jpg',
-  price: 20000,
+export const Listing: Template = {
+  ...Default,
+  args: {
+    variant: 'listing',
+    title: '멋진 신발',
+    imageUrl: '/images/sample/1.jpg',
+    price: 20000,
+  }
 }
 
 // Small 카드
-export const Small = Template.bind({})
-Small.args = {
-  variant: 'small',
-  title: '멋진 신발',
-  imageUrl: '/images/sample/1.jpg',
-  price: 20000,
+export const Small: Template = {
+  ...Default,
+  args: {
+    variant: 'small',
+    title: '멋진 신발',
+    imageUrl: '/images/sample/1.jpg',
+    price: 20000,
+  }
 }
 
 // Detail 카드
-export const Detail = Template.bind({})
-Detail.args = {
-  variant: 'detail',
-  title: '멋진 신발',
-  imageUrl: '/images/sample/1.jpg',
-  price: 20000,
+export const Detail: Template = {
+  ...Default,
+  args: {
+    variant: 'detail',
+    title: '멋진 신발',
+    imageUrl: '/images/sample/1.jpg',
+    price: 20000,
+  }
 }

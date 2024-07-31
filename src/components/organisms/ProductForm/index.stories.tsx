@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import ProductForm from './index'
 
 export default {
@@ -11,9 +11,16 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof ProductForm>
+} as Meta<typeof ProductForm>
 
-const Template: ComponentStory<typeof ProductForm> = (args) => (
-  <ProductForm {...args} />
-)
-export const Form = Template.bind({})
+type Template = StoryObj<typeof ProductForm>;
+
+const Default: Template = {
+  render: (args) => (
+    <ProductForm {...args} />
+  )
+}
+
+export const Form: Template = {
+  ...Default,
+}

@@ -1,9 +1,9 @@
-import type { ApiContext, Product } from 'types'
-import { fetcher } from 'utils'
+import type { ApiContext, Product } from '@/types/data'
+import { fetcher } from '@/utils'
 
 export type GetProductParams = {
   /**
-   * 취득할 상품
+   * 취득할 상품 ID
    */
   id: number
 }
@@ -14,10 +14,7 @@ export type GetProductParams = {
  * @param params 상품 ID
  * @returns 상품
  */
-const getProduct = async (
-  context: ApiContext,
-  { id }: GetProductParams,
-): Promise<Product> => {
+const getProduct = async (context: ApiContext, { id }: GetProductParams): Promise<Product> => {
   return await fetcher(
     `${context.apiRootUrl.replace(/\/$/g, '')}/products/${id}`,
     {

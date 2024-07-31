@@ -1,17 +1,17 @@
 import { render, screen, RenderResult } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import Header from '.'
-import { AuthContextProvider } from 'contexts/AuthContext'
-import { theme } from 'themes'
-import type { User, Product } from 'types'
+import { AuthContextProvider } from '@/contexts/AuthContext'
+import { theme } from '@/themes'
+import type { User, Product } from '@/types/data'
 
 // ShoppingCartContext의 목
-jest.mock('contexts/ShoppingCartContext')
+jest.mock('@/contexts/ShoppingCartContext')
 // eslint-disable-next-line import/order
-import { useShoppingCartContext } from 'contexts/ShoppingCartContext'
+import { useShoppingCartContext } from '@/contexts/ShoppingCartContext'
 // 오리지널 ShoppingCartContextProvider를 취득
 const { ShoppingCartContextProvider } = jest.requireActual(
-  'contexts/ShoppingCartContext',
+  '@/contexts/ShoppingCartContext',
 )
 
 // 더미 사용자

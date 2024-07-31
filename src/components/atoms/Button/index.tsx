@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import styled from 'styled-components'
-import { Responsive } from 'types'
+import { Responsive } from '@/types/styles'
 import {
   toPropValue,
   Color,
@@ -8,7 +8,7 @@ import {
   LetterSpacing,
   LineHeight,
   Space,
-} from 'utils/styles'
+} from '@/utils/styles'
 
 // 버튼 변형
 export type ButtonVariant = 'primary' | 'secondary' | 'danger'

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import useSWR from 'swr'
-import signin from 'services/auth/signin'
-import signout from 'services/auth/signout'
-import type { ApiContext, User } from 'types'
+import signin from '@/services/auth/signin'
+import signout from '@/services/auth/signout'
+import type { ApiContext, User } from '@/types/data'
 
 type AuthContextType = {
   authUser?: User
@@ -57,6 +57,7 @@ export const AuthContextProvider = ({
     await mutate()
   }
 
+  // ?? : 왼쪽값이 null이나 undefined일 경우 오른쪽값 리턴 https://velog.io/@jay2u8809/TSJS-%EB%AC%BC%EC%9D%8C%ED%91%9C-2%EA%B0%9C-%EC%97%B0%EC%82%B0%EC%9E%90-Nullish-coalescing
   return (
     <AuthContext.Provider
       value={{

@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import TextArea from './index'
 
 export default {
@@ -50,13 +50,26 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof TextArea>
+  // defaultValue 대신~
+  args: {
+    rows: 5,
+    minRows: 5,
+    maxRows: 10,
+    hasError: false,
+  },
+} as Meta<typeof TextArea>
 
-const Template: ComponentStory<typeof TextArea> = (args) => (
-  <TextArea {...args} />
-)
+type Template = StoryObj<typeof TextArea>;
 
-export const Normal = Template.bind({})
+const Default: Template = {
+  render: (args) => (
+    <TextArea {...args} />
+  )
+}
 
-export const Error = Template.bind({})
-Error.args = { hasError: true }
+export const Normal = {...Default}
+
+export const Error = {
+  ...Default,
+  args: { hasError: true }
+}

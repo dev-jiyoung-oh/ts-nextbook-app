@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
-import Button from 'components/atoms/Button'
-import Text from 'components/atoms/Text'
-import Box from 'components/layout/Box'
-import Flex from 'components/layout/Flex'
+import Button from '@/components/atoms/Button'
+import Text from '@/components/atoms/Text'
+import Box from '@/components/layout/Box'
+import Flex from '@/components/layout/Flex'
 
 // 삭제 버튼의 텍스트
 const RemoveText = styled(Text)`
@@ -56,7 +56,7 @@ const CartProduct = ({
     <Flex justifyContent="space-between">
       <Flex>
         <Box width="120px" height="120px">
-          <Link href={`/products/${id}`} passHref>
+          <Link href={`/products/${id}`} passHref legacyBehavior>
             <a>
               <Image
                 quality="85"

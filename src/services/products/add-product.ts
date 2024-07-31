@@ -1,5 +1,5 @@
-import type { ApiContext, Product } from 'types'
-import { fetcher } from 'utils'
+import type { ApiContext, Product } from '@/types/data'
+import { fetcher } from '@/utils'
 
 export type AddProductsParams = {
   /**
@@ -14,20 +14,21 @@ export type AddProductsParams = {
  * @param params 신규 추가할 상품
  * @returns 신규 추가한 상품
  */
-const addProduct = async (
-  context: ApiContext,
-  { product }: AddProductsParams,
-): Promise<Product> => {
-  return await fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}/products`, {
-    method: 'POST',
-    headers: {
-      Origin: '*',
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      credentials: 'include',
-    },
-    body: JSON.stringify(product),
-  })
+const addProduct = async (context: ApiContext, { product }: AddProductsParams): Promise<Product> => {
+  return (
+    await fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}/products`, 
+        {
+            method: 'POST',
+            headers: {
+            Origin: '*',
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            credentials: 'include',
+            },
+            body: JSON.stringify(product),
+        }
+      )
+    )
 }
 
 export default addProduct

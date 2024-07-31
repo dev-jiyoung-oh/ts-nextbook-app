@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import UserProfile from './index'
 
 export default {
@@ -43,26 +43,38 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof UserProfile>
+  // defaultValue 대신~
+  args: {
+    variant: 'normal',
+  },
+} as Meta<typeof UserProfile>
 
-const Template: ComponentStory<typeof UserProfile> = (args) => (
-  <UserProfile {...args} />
-)
+type Template = StoryObj<typeof UserProfile>;
 
-export const Small = Template.bind({})
-Small.args = {
-  variant: 'small',
-  username: '테스트 사용자',
-  profileImageUrl: '/images/sample/1.jpg',
-  numberOfProducts: 2000,
-  description: '샘플 텍스트',
+const Default: Template = {
+  render: (args) => (
+    <UserProfile {...args} />
+  )
 }
 
-export const Normal = Template.bind({})
-Normal.args = {
-  variant: 'normal',
-  username: '테스트 사용자',
-  profileImageUrl: '/images/sample/1.jpg',
-  numberOfProducts: 2000,
-  description: '샘플 텍스트',
+export const Small: Template = {
+  ...Default,
+  args: {
+    variant: 'small',
+    username: '테스트 사용자',
+    profileImageUrl: '/images/sample/1.jpg',
+    numberOfProducts: 2000,
+    description: '샘플 텍스트',
+  }
+}
+
+export const Normal: Template = {
+  ...Default,
+  args: {
+    variant: 'normal',
+    username: '테스트 사용자',
+    profileImageUrl: '/images/sample/1.jpg',
+    numberOfProducts: 2000,
+    description: '샘플 텍스트',
+  }
 }

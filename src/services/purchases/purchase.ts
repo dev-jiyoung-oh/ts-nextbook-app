@@ -1,5 +1,5 @@
-import type { ApiContext } from 'types'
-import { fetcher } from 'utils'
+import type { ApiContext } from '@/types/data'
+import { fetcher } from '@/utils'
 
 export type PurchaseParams = {
   /**
@@ -14,20 +14,20 @@ export type PurchaseParams = {
  * @param params 상품 ID
  * @returns 구입 결과의 메시지
  */
-const purchase = async (
-  context: ApiContext,
-  params: PurchaseParams,
-): Promise<{ message: string }> => {
-  return await fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}/purchases`, {
-    method: 'POST',
-    headers: {
-      Origin: '*',
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      credentials: 'include',
-    },
-    body: JSON.stringify(params),
-  })
+const purchase = async (context: ApiContext, params: PurchaseParams,): Promise<{ message: string }> => {
+  return await fetcher(
+    `${context.apiRootUrl.replace(/\/$/g, '')}/purchases`,
+    {
+        method: 'POST',
+        headers: {
+        Origin: '*',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        credentials: 'include',
+        },
+        body: JSON.stringify(params),
+    }
+  )
 }
 
 export default purchase

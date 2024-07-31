@@ -1,11 +1,12 @@
-import { ComponentMeta } from '@storybook/react'
+import { Meta } from '@storybook/react'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import InputImages, { FileData } from './'
 
-export default { title: 'Molecules/InputImages' } as ComponentMeta<
-  typeof InputImages
->
+
+export default {
+  title: 'Molecules/InputImages',
+} as Meta<typeof InputImages>
 
 const Container = styled.div`
   width: 288px;

@@ -1,7 +1,7 @@
-import ShapeImage from 'components/atoms/ShapeImage'
-import Text from 'components/atoms/Text'
-import Box from 'components/layout/Box'
-import Flex from 'components/layout/Flex'
+import ShapeImage from '@/components/atoms/ShapeImage'
+import Text from '@/components/atoms/Text'
+import Box from '@/components/layout/Box'
+import Flex from '@/components/layout/Flex'
 
 interface UserProfileProps {
   /**
@@ -36,7 +36,7 @@ const UserProfile = ({
   numberOfProducts,
   description,
 }: UserProfileProps) => {
-  const profileImageSize = variant === 'small' ? '100px' : '120px'
+  const profileImageSize = variant === 'small' ? '100' : '120' // variant === 'small' ? '100px' : '120px'
 
   return (
     <Flex>

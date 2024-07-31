@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import type { ApiContext, Category, Condition, Product } from 'types'
+import type { ApiContext, Category, Condition, Product } from '@/types/data'
 
 export type UseSearchProps = {
   /**
@@ -65,10 +65,10 @@ const useSearch = (
 
   category && params.append('category', category)
   userId && params.append('owner.id', `${userId}`)
-  conditions &&
-    conditions.forEach((condition) => params.append('condition', condition))
+  conditions && conditions.forEach((condition) => params.append('condition', condition))
   sort && params.append('_sort', sort)
   order && params.append('_order', order)
+  
   const query = params.toString()
   const { data, error } = useSWR<Product[]>(
     query.length > 0 ? `${path}?${query}` : path,

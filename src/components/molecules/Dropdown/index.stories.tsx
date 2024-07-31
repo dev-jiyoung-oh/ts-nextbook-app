@@ -1,11 +1,11 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import Dropdown from './index'
 
 export default {
   title: 'Molecules/Dropdown',
   argTypes: {
     options: {
-      control: { type: 'array' },
+      control: { type: 'object' },
       description: '드롭다운 선택지',
       table: {
         type: { summary: 'array' },
@@ -40,39 +40,53 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Dropdown>
+  // defaultValue 대신~
+  args: {
+    hasError: false,
+  },
+} as Meta<typeof Dropdown>
 
-const Template: ComponentStory<typeof Dropdown> = (args) => (
-  <Dropdown {...args} />
-)
+type Template = StoryObj<typeof Dropdown>;
 
-export const Normal = Template.bind({})
-Normal.args = {
-  options: [
-    { value: null, label: '-' },
-    { value: 'one', label: 'One' },
-    { value: 'two', label: 'Two' },
-    { value: 'three', label: 'Three' },
-  ],
-  placeholder: 'Please select items from the list',
+const Default: Template = {
+  render: (args) => (
+    <Dropdown {...args} />
+  )
 }
 
-export const InitialValue = Template.bind({})
-InitialValue.args = {
-  options: [
-    { value: null, label: '-' },
-    { value: 'one', label: 'One' },
-    { value: 'two', label: 'Two' },
-    { value: 'three', label: 'Three' },
-  ],
-  placeholder: 'Please select items from the list',
-  value: 'one',
+export const Normal: Template = {
+  ...Default,
+  args: {
+    options: [
+      { value: null, label: '-' },
+      { value: 'one', label: 'One' },
+      { value: 'two', label: 'Two' },
+      { value: 'three', label: 'Three' },
+    ],
+    placeholder: 'Please select items from the list',
+  }
 }
 
-export const Many = Template.bind({})
-Many.args = {
-  options: Array.from(Array(20), (_v, k) => {
-    return { value: k.toString(), label: k.toString() }
-  }),
-  placeholder: 'Please select items from the list',
+export const InitialValue: Template = {
+  ...Default,
+  args: {
+    options: [
+      { value: null, label: '-' },
+      { value: 'one', label: 'One' },
+      { value: 'two', label: 'Two' },
+      { value: 'three', label: 'Three' },
+    ],
+    placeholder: 'Please select items from the list',
+    value: 'one',
+  }
+}
+
+export const Many: Template = {
+  ...Default,
+  args: {
+    options: Array.from(Array(20), (_v, k) => {
+      return { value: k.toString(), label: k.toString() }
+    }),
+    placeholder: 'Please select items from the list',
+  }
 }

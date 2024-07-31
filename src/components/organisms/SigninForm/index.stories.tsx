@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import SigninForm from './index'
 
 export default {
@@ -11,9 +11,16 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof SigninForm>
+} as Meta<typeof SigninForm>
 
-const Template: ComponentStory<typeof SigninForm> = (args) => (
+type Template = StoryObj<typeof SigninForm>;
+
+const Default: Template = {
+  render: (args) => (
   <SigninForm {...args} />
 )
-export const Form = Template.bind({})
+}
+
+export const Form: Template = {
+  ...Default,
+}
