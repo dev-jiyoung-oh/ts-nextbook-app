@@ -1,9 +1,10 @@
-## TypeScript와 React/Next.js로 만드는 실전 웹 애플리케이션
+## TypeScript와 React/Next.js로 만드는 실전 웹 애플리케이션 -> 공부
 
 「[TypeScript와 React/Next.js로 만드는 실전 웹 애플리케이션](https://gihyo.jp/book/2022/978-4-297-12916-3)」의 샘플 애플리케이션
 
 ![샘플 애플리케이션](images/coverpage.png)
 
+<!--
 ## 1판에서의 업데이트
 
 - [빌드가 실패하는 문제 수정](https://github.com/moseskim/ts-nextbook-app/pull/6) (일본어))
@@ -14,7 +15,14 @@
 - Node.js: 16.14.0
 - Next.js: 12.2.3
 - React: 18.2.0
+-->
 
+## 환경
+
+- Node.js: 20.12.0
+- Next.js: 14.2.4
+- React: 18
+  
 ## 설치
 
 ```bash
