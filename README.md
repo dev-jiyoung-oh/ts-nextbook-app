@@ -1,7 +1,9 @@
 ## TypeScript와 React/Next.js로 만드는 실전 웹 애플리케이션 -> 공부
 
+「[TypeScript와 React/Next.js로 만드는 실전 웹 애플리케이션](https://wikibook.co.kr/ts-react-nextjs/)」의 샘플 애플리케이션
+<!--
 「[TypeScript와 React/Next.js로 만드는 실전 웹 애플리케이션](https://gihyo.jp/book/2022/978-4-297-12916-3)」의 샘플 애플리케이션
-
+-->
 ![샘플 애플리케이션](images/coverpage.png)
 
 <!--
