@@ -1,0 +1,54 @@
+p217. Next.js 프로젝트 작성
+npx create-next-app@latest --ts
+nextjs-wiki-book
+tsconfig.json 수정 <- 여기서는 일단 안함
+
+// p220 스타일드 컴포넌트 설정
+npm install styled-components
+npm install --save-dev @types/styled-components
+pages/_document.tsx 수정
+pages/_app.tsx 수정
+
+// p223. ESLint 설정
+npm install --save-dev prettier eslint typescript-eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import
+.eslintrc.json 수정
+pakage.json 수정
+    - scripts.lint 내용 수정: 기본적으로는 pages, components, lib 아래의 파일에 적용되는 next lint를 --dir 옵션을 추가해서 해당 디렉터리에 다음의 모든 파일에 적용
+    - npm run lint: lint를 수행해 소스 코드의 문제를 출력
+    - npm run format: 소스 코드의 포맷을 자동으로 수행
+
+// p226. 스토리북 설치
+npx sb init
+npm install --save-dev @storybook/addon-postcss tsconfig-paths-webpack-plugin @babel/plugin-proposal-class-properties @babel/plugin-proposal-private-methods @babel/plugin-proposal-private-property-in-object tsconfig-paths-webpack-plugin @mdx-js/react
+.storybook/preview.ts 내용수정 및 파일확장자 변경(ts -> js)
+
+// p233. React Hook Form 도입 - 폼 밸리데이션 라이브러리, 성능/유연성/확장성 우수
+npm install react-hook-form
+npm install @mui/material -- 예시로 외부 체크박스 텀포넌트 쓰려고~
+
+// p236. SWR 도입
+npm install swr
+
+// p237. React Content Loader 도입 - 로딩을 위한 플레이스홀더를 간단하게 작성할 수 있는 라이브러리. SVG를 사용해 로더 형태를 커스터마이징 가능
+npm install react-content-loader
+npm install --save-dev @types/react-content-loader
+
+// p238. 머티리얼 아이콘 도입 -- 머티리얼 UI 라이브러리의 컴포넌트
+npm install @mui/material @mui/icons-material @emotion/react @emotion/styled -- 머티리얼 UI가 의존하는 emotion관련 라이브러리도 함께 설치
+
+// p240. 테스트 환경 구축
+npm install --save-dev @testing-library/jest-dom @testing-library/react jest jest-environment-jsdom
+jest.setup.js 파일 생성
+jest.config.js 파일 생성
+package.json 파일에 script.test 추가
+next.config.js 빌드 시에 리액트 테스팅 라이브러리에서 사용할 data-tesid 속성을 삭제하는 설정을 추가.
+    이 속성을 프로덕션 환경에서는 필요하지 않으므로 reactRemoveProperties라는 옵션을 사용해서 삭제
+
+// p243. JSON 서버 설정
+# Next.js의 애플리케이션과는 별도의 디렉터리에서 작업
+git clone https://github.com/wikibook/ts-nextbook-json
+cd C:\workspace\ts-nextbook-json
+npm ci
+npm start
+# JSON 서버 동작 테스트
+curl -X GET -i http://localhost:8000/users
